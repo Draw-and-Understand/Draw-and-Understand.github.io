@@ -23,6 +23,12 @@ body {
   font-weight: bold; 
 }
 
+.mdvp-data {
+  font-variant: small-caps;
+  color: rgb(185, 192, 244); 
+  font-weight: bold; 
+}
+
 .teaser .hero-body {
   padding-top: 0;
   padding-bottom: 3rem;

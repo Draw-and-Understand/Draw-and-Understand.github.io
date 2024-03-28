@@ -39,6 +39,9 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 </head>
 <body>
 
@@ -212,7 +215,6 @@
 <!-- Paper Abstract -->
 <section class="section">
   <div class="container is-max-desktop">
-    <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-six-fifths">
         <h2 class="title is-3">Abstract</h2>
@@ -229,8 +231,8 @@
             Specifically, we propose <span class="sphinx-v">SPHINX-V</span>, a new end-to-end trained Multimodal Large Language Model (MLLM) 
             that connects a vision encoder, a visual prompt encoder and an LLM for various visual prompts 
             (points, bounding boxes, cycle and free-form shape) and language understanding. 
-            To advance visual prompting research for MLLMs, we introduce MDVP-Data and MDVP-Bench. 
-            MDVP-Data features a multi-domain dataset containing 1.2M unique image-visual prompt-text 
+            To advance visual prompting research for MLLMs, we introduce <span class='mdvp-data'>MDVP-Data</span> and MDVP-Bench. 
+            <span class='mdvp-data'>MDVP-Data</span> features a multi-domain dataset containing 1.2M unique image-visual prompt-text 
             instruction-following samples, including natural images, document images, OCR images, 
             mobile screenshots, web screenshots, and multi-panel images. Furthermore, we present MDVP-Bench, 
             a comprehensive and challenging benchmark to assess a model's capability in understanding visual 
@@ -244,31 +246,127 @@
         </div>
       </div>
     </div>
-    <!--/ Abstract. -->
-
-    <!-- Pipeline -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-six-fifths">
-        <h2 class="title is-3">Architecture</h2>
-        <!-- <div class="publication-video">
-          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
-                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div> -->
-      </div>
-    </div>
-    <!--/ Pipeline -->
-
-    <!-- MDVP Dataset -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-six-fifths">
-        <h2 class="title is-3">MDVP Dataset</h2>
-
-      </div>
-    </div>
-    <!-- MDVP Dataset -->
   </div>
 </section>
 
+<!-- Pipeline -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-seven-fifths">
+        <h2 class="title is-3">
+          <img src="static/images/sphinx-v-logo.png" alt="Icon" style="height: 1.1em; vertical-align: middle; margin-right: 0.1em;">
+          <span class="sphinx-v">SPHINX-V</span>: Understanding Arbitrary Format Visual Prompts and Images from Diverse Domains
+        </h2>
+        <div class="content has-text-justified">
+          <p>
+            <span class="sphinx-v">SPHINX-V</span> demonstrates robust capabilities in recognizing diverse visual prompts and images 
+            across various domains, enabling execution of complex tasks such as Visual Question Answering (VQA), 
+            Optical Character Recognition (OCR), Regional Captioning, and other intricate referring tasks. 
+            This formidable proficiency stems from its simple yet effective model architecture and training 
+            strategies:
+          </p>
+          <div style="text-align: center;">
+            <img src="static/images/arch-1.png" alt="arch" style="height: auto; width: 100%; display: inline-block;">
+          </div>
+          <p></p>
+          <p>
+            <span class="sphinx-v">SPHINX-V</span> comprises three components: a mixed vision encoder, 
+            a versatile visual prompt encoder, and a large language model (LLM). 
+            Given an image alongside coordinates of specific points or regions and input 
+            instruction language, we perform tokenization and encoding to derive three distinct embeddings: 
+            image embeddings <span class="tex">\( Z_i \)</span>, visual prompt embeddings <span class="tex">\( Z_v \)</span>, 
+            and text embeddings <span class="tex">\( Z_t \)</span>.
+            Subsequently, we employ two projection matrixs to convert <span class="tex">\( Z_i \)</span> and 
+            <span class="tex">\( Z_v \)</span> into 
+            language embedding tokens, aligning them with the word embedding space in the language model. 
+            Finally, we integrate the image, visual prompt, and language representations, 
+            forwarding them collectively to the LLM to attain pixel/region-level understanding capability.
+          </p>
+          <p><span class="sphinx-v">SPHINX-V</span> is trained in two stages:</p>
+
+              <ul>
+                <li><strong>Stage 1: Image-Visual Prompt-Text Alignment Pre-training.</strong>
+                  <p>By employing a visual prompt encoder, we initially freeze both the pre-trained vision encoder and the pre-trained LLM. We focus on training the features of visual prompts to align with the features of image-visual prompt-text. We implement an MLP as the connector between visual prompts and language to enhance the multimodal prompting capabilities of the model.</p>
+                </li>
+                
+                <li><strong>Stage 2: Multi-Task Supervised Finetuning.</strong>
+                  <p>At this stage, we load the weights trained during stage 1 and keep the vision encoder and visual prompt encoder weights frozen. We then fine-tune the visual prompt projector and the LLM model. Our focus is on enhancing <span class="sphinx-v">SPHINX-V</span>'s ability to accurately interpret user instructions and handle diverse pixel-level understanding tasks, such as detailed captioning, inter-relationship analysis, and complex reasoning.</p>
+                </li>
+              </ul>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MDVP Dataset -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-six-fifths">
+        <h2 class="title is-3">
+          <img src="static/images/database.png" alt="Icon" style="height: 1.2em; vertical-align: middle; margin-right: 0.1em;">
+          <span class='mdvp-data'>MDVP-Data</span>: Multi-domain Visual-Prompt Instruction Dataset
+        </h2>
+        <div class="content has-text-justified">
+          <p>We introduce <span class="mdvp-data">MDVP-Data</span>, an instruction dataset designed to foster 
+            fine-grained and open-world image understanding in MLLMs, encompassing approximately 1.2 million 
+            multimodal dialogues. <span class="mdvp-data">MDVP-Data</span> integrates both point-level 
+            and region-level instruction data derived from public datasets. It consists of two types of data:
+          </p>
+            <ol>
+              <li>Restructured public grounding datasets formatted for visual prompt-based instruction following tuning;</li>
+              <li>High-quality training pairs developed using meticulously crafted prompt templates, produced through the GPT-4V model.</li>
+            </ol>
+            <div style="text-align: center;">
+              <img src="static/images/data_fig-1.png" alt="arch" style="height: auto; width: 100%; display: inline-block;">
+            </div>
+            <p></p>
+            <p>
+              Above diagram displays the distribution of images drawn from various sources, including nature scenes, 
+              OCR texts, web content, mobile interfaces, documents, and multi-pane graphics. 
+              It also features a sample from the GPT-assisted MDVP dataset, emphasizing the diversity 
+              and richness of its point-based and region-based instruction-following data.
+            </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Performance -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-six-fifths">
+        <h2 class="title is-3">
+          <img src="static/images/performance.png" alt="Icon" style="height: 1.4em; vertical-align: middle; margin-right: 0.1em;">
+          Performance
+        </h2>
+        <h3 class="title is-4" style="text-align: left;">
+          <img src="static/images/tradition-bench.png" alt="Icon" style="height: 1.2em; vertical-align: middle; margin-right: 0.1em;">
+          Traditional Evaluating Task
+        </h3>
+        <div class="content has-text-justified">
+          <p>
+            In traditional evaluation tasks, <span class="sphinx-v">SPHINX-V</span> 
+            significantly outperforms existing visual prompt-based methods:
+          </p>
+        </div>
+
+        <h3 class="title is-4" style="text-align: left;">
+          <img src="static/images/mdvp-bench.png" alt="Icon" style="height: 1.2em; vertical-align: middle; margin-right: 0.1em;">
+          MDVP-Bench
+        </h3>
+
+        
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="section">
   <div class="container is-max-desktop">
