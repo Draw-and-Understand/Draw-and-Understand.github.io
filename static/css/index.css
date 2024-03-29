@@ -153,6 +153,11 @@ body {
   margin: 0;
 }
 
+.hero-centered-text {
+  text-align: center; 
+  font-size: smaller; 
+  color: #989595;
+}
 
 .interpolation-panel {
   background: #f5f5f5;

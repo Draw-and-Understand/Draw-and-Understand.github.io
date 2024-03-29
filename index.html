@@ -168,6 +168,7 @@
           <img src="static/images/example-5.png" alt="arch" style="height: auto; width: auto;">
         </div>
       </div>
+      <p class="hero-centered-text"> ... slide to see more examples ...</p>
     </div>
   </div>
 </section>
@@ -175,7 +176,10 @@
 		<script>
 			bulmaCarousel.attach('#results-carousel', {
 				slidesToScroll: 1,
-				slidesToShow: 1
+				slidesToShow: 1,
+        autoplay: true, 
+        autoplaySpeed: 3000,
+        loop: true
 			});
 </script>
 
