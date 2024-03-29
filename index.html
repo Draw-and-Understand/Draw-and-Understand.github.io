@@ -53,27 +53,33 @@
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">Draw-and-Understand: Leveraging Visual Prompts to Enable MLLMs to Comprehend What You Want</h1>
           <div class="is-size-5 publication-authors">
-            <span class="author-block">
+            <span class="author-block corresponding-author">
               <a href="">Weifeng Lin</a><sup>1</sup>,
             </span>
-            <span class="author-block">
-              <a href="">Xinyu Wei</a><sup>1</sup>,
-            </span>
-            <!-- <span class="author-block">
-              <a href="https://jonbarron.info">Jonathan T. Barron</a><sup>2</sup>,
+            <span class="author-block corresponding-author">
+              <a href="">Xinyu Wei</a><sup>2</sup>,
             </span>
             <span class="author-block">
-              <a href="http://sofienbouaziz.com">Sofien Bouaziz</a><sup>2</sup>,
+              <a href="">Ruichuan An</a><sup>2</sup>,
             </span>
             <span class="author-block">
-              <a href="https://www.danbgoldman.com">Dan B Goldman</a><sup>2</sup>,
+              <a href="">Peng Gao</a><sup>1</sup>,
             </span>
             <span class="author-block">
-              <a href="https://homes.cs.washington.edu/~seitz/">Steven M. Seitz</a><sup>1,2</sup>,
+              <a href="">Bocheng Zou</a><sup>2</sup>,
             </span>
             <span class="author-block">
-              <a href="http://www.ricardomartinbrualla.com">Ricardo Martin-Brualla</a><sup>2</sup>
-            </span> -->
+              <a href="">Yulin Luo</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="">Siyuan Huang</a><sup>1</sup>
+            </span>
+            <span class="author-block">
+              <a href="">Shanghang Zhang</a><sup>2</sup>
+            </span>
+            <span class="author-block">
+              <a href="">Hongsheng Li</a><sup>1</sup>
+            </span>
           </div>
 
           <div class="is-size-5 publication-authors">
@@ -140,77 +146,39 @@
   </div>
 </section>
 
-<!-- <section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline width="200%">
-        <source src="./static/videos/teaser.mp4"
-                type="video/mp4">
-      </video>
-      <h2 class="subtitle has-text-centered">
-        <span class="dnerf">Nerfies</span> turns selfie videos from your phone into free-viewpoint portraits.
-      </h2>
-    </div>
-  </div>
-</section> -->
 
 <!-- Rolling Banner for examples -->
 <section class="hero is-light is-small">
   <div class="hero-body">
     <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-steve">
-          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/steve.mp4"
-                    type="video/mp4">
-          </video>
+      <div id="results-carousel" class="carousel results-carousel" style="flex-wrap: nowrap;">
+        <div class="item example-2">
+          <img src="static/images/example-2.png" alt="arch" style="height: auto; width: auto;">
         </div>
-        <div class="item item-chair-tp">
-          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/chair-tp.mp4"
-                    type="video/mp4">
-          </video>
+        <div class="item example-1">
+          <img src="static/images/example-1.png" alt="arch" style="height: auto; width: auto;">
         </div>
-        <div class="item item-shiba">
-          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/shiba.mp4"
-                    type="video/mp4">
-          </video>
+        <div class="item example-3">
+          <img src="static/images/example-3.png" alt="arch" style="height: auto; width: auto;">
         </div>
-        <div class="item item-fullbody">
-          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/fullbody.mp4"
-                    type="video/mp4">
-          </video>
+        <div class="item example-4">
+          <img src="static/images/example-4.png" alt="arch" style="height: auto; width: auto;">
         </div>
-        <div class="item item-blueshirt">
-          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/blueshirt.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-mask">
-          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/mask.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-coffee">
-          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/coffee.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-toby">
-          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/toby2.mp4"
-                    type="video/mp4">
-          </video>
+        <div class="item example-5">
+          <img src="static/images/example-5.png" alt="arch" style="height: auto; width: auto;">
         </div>
       </div>
     </div>
   </div>
 </section>
+<script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/js/bulma-carousel.min.js"></script>
+		<script>
+			bulmaCarousel.attach('#results-carousel', {
+				slidesToScroll: 1,
+				slidesToShow: 1
+			});
+</script>
+
 
 <!-- Paper Abstract -->
 <section class="section">
@@ -350,17 +318,61 @@
           <img src="static/images/tradition-bench.png" alt="Icon" style="height: 1.2em; vertical-align: middle; margin-right: 0.1em;">
           Traditional Evaluating Task
         </h3>
+        <p style="text-align: left; margin-bottom: 20px;">
+          In traditional evaluation tasks, <span class="sphinx-v">SPHINX-V</span> significantly 
+          outperforms existing visual-prompt-based methods.
+        </p>
         <div class="content has-text-justified">
-          <p>
-            In traditional evaluation tasks, <span class="sphinx-v">SPHINX-V</span> 
-            significantly outperforms existing visual prompt-based methods:
-          </p>
+          <div class="image-row" style="margin-bottom: 20px;">
+            <div class="image-column">
+              <img src="static/images/ROC.png" alt="ROC" style="width: 95%;">
+              <p>Semantic Similarity and Semantic IoU of ROC(referring object classification) on LVIS and PACO.</p>
+            </div>
+            <div class="image-column">
+              <img src="static/images/OCR.png" alt="OCR" style="width: 95%;">
+              <p>Accuracy of ROC on LVIS and OCR(optical character recognition) on COCO text.</p>
+            </div>
+          </div>
+          <div class="image-row" style="margin-bottom: 20px;">
+            <div class="image-column">
+              <img src="static/images/detail-caption.png" alt="detail caption" style="width: 90%;">
+              <p>Detailed region-level captioning performance on the RefCOCOg validation set. Using GPT-4V for evaluation.</p>
+            </div>
+            <div class="image-column">
+              <img src="static/images/brief-caption.png" alt="brief caption" style="width: 90%;">
+              <p>Brief region captioning performance evaluated on
+                RefCOCOg. Using traditional evaluation metric.</p>
+            </div>
+          </div>
+          <div style="text-align: center; margin-bottom: 20px;">
+            <img src="static/images/VCR.png" alt="arch" style="height: auto; width: 60%; display: inline-block;">
+            <p>Validation Accuracy on VCR dataset. 
+              Q, A, R stands for Question, Answer, Rational, respectively.</p>
+          </div>
         </div>
+
+        
+        
+
 
         <h3 class="title is-4" style="text-align: left;">
           <img src="static/images/mdvp-bench.png" alt="Icon" style="height: 1.2em; vertical-align: middle; margin-right: 0.1em;">
           MDVP-Bench
         </h3>
+        <p style="text-align: left; margin-bottom: 20px;">
+          To evaluate the proficiency of the MLLM in complex 
+          pixel-level image understanding tasks and its versatility across various domains, 
+          we initially curated a subset of our <span class="mdvp-data">MDVP-Data</span>. 
+          This subset underwent a thorough 
+          manual content review and filtering process, resulting in the creation of MDVP-Bench. 
+          MDVP-Bench is a comprehensive and challenging benchmark covering a wide range of tasks, 
+          including concise descriptions, elaborate narratives, analyses of interconnections among 
+          different regions, and complex reasoning. The performance of existing visual-prompt-based 
+          methods on MDVP-Bench is as follows:
+        </p>
+        <div style="text-align: center; margin-bottom: 20px;">
+          <img src="static/images/mdvp-bench-table.png" alt="arch" style="height: auto; width: 80%; display: inline-block;">
+        </div>
 
         
       </div>
@@ -368,12 +380,13 @@
   </div>
 </section>
 
-<section class="section">
+<!-- MDVP domain example -->
+<!-- <section class="section">
   <div class="container is-max-desktop">
 
     <div class="columns is-centered">
 
-      <!-- Natural Image -->
+
       <div class="column">
         <div class="content">
           <h2 class="title is-3">Natural Image</h2>
@@ -387,7 +400,7 @@
         </div>
       </div>
 
-      <!-- Multi Panel Image -->
+
       <div class="column">
         <h2 class="title is-3">Multi Panel Image</h2>
         <div class="columns is-centered">
@@ -407,7 +420,7 @@
 
     <div class="columns is-centered">
 
-      <!-- Document -->
+
       <div class="column">
         <div class="content">
           <h2 class="title is-3">Document</h2>
@@ -421,7 +434,7 @@
         </div>
       </div>
 
-      <!-- Text Spot -->
+
       <div class="column">
         <h2 class="title is-3">Text Spot</h2>
         <div class="columns is-centered">
@@ -442,7 +455,7 @@
 
     <div class="columns is-centered">
 
-      <!-- Web Page -->
+
       <div class="column">
         <div class="content">
           <h2 class="title is-3">Web Page</h2>
@@ -456,7 +469,7 @@
         </div>
       </div>
 
-      <!-- Screen Shot -->
+
       <div class="column">
         <h2 class="title is-3">Screen Shot</h2>
         <div class="columns is-centered">
@@ -476,100 +489,8 @@
     </div>
 
 
-    <!-- Animation. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Animation</h2>
-
-        <!-- Interpolating. -->
-        <h3 class="title is-4">Interpolating states</h3>
-        <div class="content has-text-justified">
-          <p>
-            We can also animate the scene by interpolating the deformation latent codes of two input
-            frames. Use the slider here to linearly interpolate between the left frame and the right
-            frame.
-          </p>
-        </div>
-        <div class="columns is-vcentered interpolation-panel">
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_start.jpg"
-                 class="interpolation-image"
-                 alt="Interpolate start reference image."/>
-            <p>Start Frame</p>
-          </div>
-          <div class="column interpolation-video-column">
-            <div id="interpolation-image-wrapper">
-              Loading...
-            </div>
-            <input class="slider is-fullwidth is-large is-info"
-                   id="interpolation-slider"
-                   step="1" min="0" max="100" value="0" type="range">
-          </div>
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_end.jpg"
-                 class="interpolation-image"
-                 alt="Interpolation end reference image."/>
-            <p class="is-bold">End Frame</p>
-          </div>
-        </div>
-        <br/>
-        <!--/ Interpolating. -->
-
-        <!-- Re-rendering. -->
-        <h3 class="title is-4">Re-rendering the input video</h3>
-        <div class="content has-text-justified">
-          <p>
-            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
-            viewpoint such as a stabilized camera by playing back the training deformations.
-          </p>
-        </div>
-        <div class="content has-text-centered">
-          <video id="replay-video"
-                 controls
-                 muted
-                 preload
-                 playsinline
-                 width="75%">
-            <source src="./static/videos/replay.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <!--/ Re-rendering. -->
-
-      </div>
-    </div>
-    <!--/ Animation. -->
-
-
-    <!-- Concurrent Work. -->
-    <!-- <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Related Links</h2>
-
-        <div class="content has-text-justified">
-          <p>
-            There's a lot of excellent work that was introduced around the same time as ours.
-          </p>
-          <p>
-            <a href="https://arxiv.org/abs/2104.09125">Progressive Encoding for Neural Optimization</a> introduces an idea similar to our windowed position encoding for coarse-to-fine optimization.
-          </p>
-          <p>
-            <a href="https://www.albertpumarola.com/research/D-NeRF/index.html">D-NeRF</a> and <a href="https://gvv.mpi-inf.mpg.de/projects/nonrigid_nerf/">NR-NeRF</a>
-            both use deformation fields to model non-rigid scenes.
-          </p>
-          <p>
-            Some works model videos with a NeRF by directly modulating the density, such as <a href="https://video-nerf.github.io/">Video-NeRF</a>, <a href="https://www.cs.cornell.edu/~zl548/NSFF/">NSFF</a>, and <a href="https://neural-3d-video.github.io/">DyNeRF</a>
-          </p>
-          <p>
-            There are probably many more by the time you are reading this. Check out <a href="https://dellaert.github.io/NeRF/">Frank Dellart's survey on recent NeRF papers</a>, and <a href="https://github.com/yenchenlin/awesome-NeRF">Yen-Chen Lin's curated list of NeRF papers</a>.
-          </p>
-        </div>
-      </div>
-    </div> -->
-    <!--/ Concurrent Work. -->
-
   </div>
-</section>
+</section> -->
 
 
 <section class="section" id="BibTeX">
@@ -583,15 +504,6 @@
 
 <footer class="footer">
   <div class="container">
-    <div class="content has-text-centered">
-      <a class="icon-link"
-         href="./static/videos/nerfies_paper.pdf">
-        <i class="fas fa-file-pdf"></i>
-      </a>
-      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
     <div class="columns is-centered">
       <div class="column is-8">
         <div class="content">
