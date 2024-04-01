@@ -4,7 +4,6 @@
   <meta charset="utf-8">
   <meta name="description"
         content="Draw-and-Understand: Leveraging Visual Prompts to Enable MLLMs to Comprehend What You Want">
-  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Draw-and-Understand: Leveraging Visual Prompts to Enable MLLMs to Comprehend What You Want</title>
 
@@ -92,18 +91,9 @@
 
           <div class="column has-text-centered">
             <div class="publication-links">
-              <!-- PDF Link. -->
+              <!-- Arxiv Link. -->
               <span class="link-block">
-                <a href=""
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href=""
+                <a href="https://arxiv.org/abs/2403.20271"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
@@ -113,7 +103,7 @@
               </span>
               <!-- Gradio Link. -->
               <span class="link-block">
-                  <a href="https://665adc2845309519e8.gradio.live/"
+                  <a href="http://106.14.2.150:10020/"
                       class="external-link button is-normal is-rounded is-dark">
                       <span class="icon">
                           <img src="static/images/gradio-icon-seeklogo.svg" alt="Gradio Logo">
@@ -123,7 +113,7 @@
               </span>
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/google/nerfies"
+                <a href="https://github.com/AFeng-x/Draw-and-Understand"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -131,16 +121,42 @@
                   <span>Code</span>
                   </a>
               </span>
-              <!-- Dataset Link. -->
+              <!-- MDVP-Data Link. -->
               <span class="link-block">
-                <a href="https://github.com/google/nerfies/releases/tag/0.1"
+                <a href="https://huggingface.co/datasets/Afeng-x/Draw-and-Understand/tree/main/stage_2_fine-tuning/MDVP-Data"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="far fa-images"></i>
                   </span>
-                  <span>Data</span>
+                  <span>MVDP-Data</span>
                   </a>
+              </span>
+              <!-- MDVP-Bench Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/datasets/Afeng-x/Draw-and-Understand/tree/main/MDVP-bench"
+                   class="external-link button is-normal is-rounded is-dark">
+                   <span class="icon">
+                     <img src="static/images/wrench.svg" alt="Gradio Logo">
+                    </span>
+                  <span>MVDP-Bench</span>
+                  </a>
+              </span>
+              <!-- Model Link -->
+              <span class="link-block">
+                <a href="https://huggingface.co/Afeng-x/SPHINX-V-Model"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Model</span>
+                  </a>
+              </span>
             </div>
+
+          </div>
+            
+            
+            
 
           </div>
         </div>
@@ -210,7 +226,7 @@
             that connects a vision encoder, a visual prompt encoder and an LLM for various visual prompts 
             (points, bounding boxes, cycle and free-form shape) and language understanding. 
             To advance visual prompting research for MLLMs, we introduce <span class='mdvp-data'>MDVP-Data</span> and MDVP-Bench. 
-            <span class='mdvp-data'>MDVP-Data</span> features a multi-domain dataset containing 1.2M unique image-visual prompt-text 
+            <span class='mdvp-data'>MDVP-Data</span> features a multi-domain dataset containing 1.6M unique image-visual prompt-text 
             instruction-following samples, including natural images, document images, OCR images, 
             mobile screenshots, web screenshots, and multi-panel images. Furthermore, we present MDVP-Bench, 
             a comprehensive and challenging benchmark to assess a model's capability in understanding visual 
