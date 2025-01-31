@@ -1,1 +1,3 @@
-# Draw-and-Understand.github.io
+# Draw-and-Understand Project Page
+
+https://draw-and-understand.github.io/
