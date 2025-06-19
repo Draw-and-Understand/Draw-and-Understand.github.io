@@ -81,12 +81,16 @@
             </span>
           </div>
 
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>Shanghai AI Laboratory</span>
-            <span class="author-block"><sup>2</sup>Peking University</span>
-            <span class="author-block"><sup>3</sup>Xi'an Jiaotong University</span>
-            <span class="author-block"><sup>4</sup>University of Wisconsin-Madison</span>
-            <span class="author-block"><sup>5</sup>The Chinese University of Hong Kong</span>
+          <div class="is-size-5 publication-authors" style="margin-top: 15px;">
+            <div style="margin-bottom: 8px;">
+              <span class="author-block" style="margin-right: 25px;"><sup>1</sup>Shanghai AI Laboratory</span>
+              <span class="author-block" style="margin-right: 25px;"><sup>2</sup>Peking University</span>
+              <span class="author-block"><sup>3</sup>Xi'an Jiaotong University</span>
+            </div>
+            <div>
+              <span class="author-block" style="margin-right: 25px;"><sup>4</sup>University of Wisconsin-Madison</span>
+              <span class="author-block"><sup>5</sup>The Chinese University of Hong Kong</span>
+            </div>
           </div>
 
           <div class="column has-text-centered">
@@ -128,7 +132,7 @@
                   <span class="icon">
                       <i class="far fa-images"></i>
                   </span>
-                  <span>MVDP-Data</span>
+                  <span>MDVP-Data</span>
                   </a>
               </span>
               <!-- MDVP-Bench Link. -->
@@ -138,7 +142,7 @@
                    <span class="icon">
                     <img src="static/images/wrench.svg" alt="Gradio Logo" style="width: 18px; height: 18px;">
                     </span>
-                  <span>MVDP-Bench</span>
+                  <span>MDVP-Bench</span>
                   </a>
               </span>
               <!-- Model Link -->
@@ -214,28 +218,23 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            The interaction between humans and artificial intelligence (AI) is a crucial factor that 
-            reflects the effectiveness of multimodal large language models (MLLMs). 
-            However, current MLLMs primarily focus on image-level comprehension and limit 
-            interaction to textual instructions, thereby constraining their flexibility in usage 
-            and depth of response. In this paper, we introduce the Draw-and-Understand project: 
-            <strong>a new model</strong>, <strong>a multi-domain dataset</strong>, and <strong>a challenging benchmark</strong> for visual prompting. 
+            We present the <span class="sphinx-v">Draw-and-Understand</span> framework, exploring how to integrate visual prompting understanding capabilities 
+            into Multimodal Large Language Models (MLLMs). Visual prompts allow users to interact through multi-modal instructions,
+            enhancing the models' interactivity and fine-grained image comprehension. In this framework, we propose a general architecture 
+            adaptable to different pre-trained MLLMs, enabling it to recognize various types of visual prompts (such as points, bounding boxes,
+            and free-form shapes) alongside language understanding.
           </p>
           <p>
-            Specifically, we propose <span class="sphinx-v">SPHINX-V</span>, a new end-to-end trained Multimodal Large Language Model (MLLM) 
-            that connects a vision encoder, a visual prompt encoder and an LLM for various visual prompts 
-            (points, bounding boxes, cycle and free-form shape) and language understanding. 
-            To advance visual prompting research for MLLMs, we introduce <span class='mdvp-data'>MDVP-Data</span> and MDVP-Bench. 
-            <span class='mdvp-data'>MDVP-Data</span> features a multi-domain dataset containing 1.6M unique image-visual prompt-text 
-            instruction-following samples, including natural images, document images, OCR images, 
-            mobile screenshots, web screenshots, and multi-panel images. Furthermore, we present MDVP-Bench, 
-            a comprehensive and challenging benchmark to assess a model's capability in understanding visual 
-            prompting instructions.
+            Additionally, we introduce <span class='mdvp-data'>MDVP-Instruct-Data</span>, a multi-domain dataset featuring <b>🔥1.2 million {image, visual prompt, text} triplets</b>, 
+            including natural images, document images, scene text images, mobile/web screenshots, and remote sensing images. 
+            Building on this dataset, we introduce <span class='mdvp-data'>MDVP-Bench</span>, a challenging benchmark designed to 
+            evaluate a model’s ability to understand visual prompting instructions.  
           </p>
           <p>
-            Our experiments demonstrate <span class="sphinx-v">SPHINX-V</span>'s impressive multimodal interaction capabilities through 
-            visual prompting, revealing significant improvements in detailed region description and 
-            question-answering abilities.
+            The experimental results demonstrate that our framework can be easily and effectively applied to various MLLMs, 
+            such as SPHINX-X and LLaVA. After training with <span class='mdvp-data'>MDVP-Instruct-Data</span> and image-level instruction datasets, 
+            our <span class="sphinx-v">VP-MLLM</span> exhibit impressive multimodal interaction capabilities and pixel-level understanding,
+            while maintaining their image-level visual perception performance.
           </p>
         </div>
       </div>
@@ -250,42 +249,63 @@
       <div class="column is-seven-fifths">
         <h2 class="title is-3">
           <img src="static/images/sphinx-v-logo.png" alt="Icon" style="height: 1.1em; vertical-align: middle; margin-right: 0.1em;">
-          <span class="sphinx-v">SPHINX-V</span>: Understanding Arbitrary Format Visual Prompts and Images from Diverse Domains
+          <span class="sphinx-v">VP-MLLM</span>: Understanding Arbitrary Format Visual Prompts and Images from Diverse Domains
         </h2>
         <div class="content has-text-justified">
           <p>
-            <span class="sphinx-v">SPHINX-V</span> demonstrates robust capabilities in recognizing diverse visual prompts and images 
-            across various domains, enabling execution of complex tasks such as Visual Question Answering (VQA), 
-            Optical Character Recognition (OCR), Regional Captioning, and other intricate referring tasks. 
-            This formidable proficiency stems from its simple yet effective model architecture and training 
-            strategies:
+            We will detail the process of integrating visual prompt understanding into pre-trained MLLMs and transforming them 
+            into Visual Prompting MLLMs (<span class="sphinx-v">VP-MLLM</span>), as well as the training strategy designed to enhance alignment and fine-tuning for VP-MLLMs below.
+          </p>
+          <p>
+            For most existing MLLMs, the overall architecture consists of three components: a vision encoder, a tokenizer (text encoder), 
+            and a Large Language Model (LLM). Each modality is processed by its corresponding encoder, and the resulting tokens are concatenated 
+            and fed into the LLM for learning. Similarly, to achieve visual prompting understanding, we incorporate a visual prompt encoder
+            to embed the input visual prompts. This integration allows us to combine the image, visual prompt, and language representations 
+            and forward them collectively to the LLM:
           </p>
           <div style="text-align: center;">
             <img src="static/images/arch-1.png" alt="arch" style="height: auto; width: 100%; display: inline-block;">
           </div>
           <p></p>
           <p>
-            <span class="sphinx-v">SPHINX-V</span> comprises three components: a mixed vision encoder, 
-            a versatile visual prompt encoder, and a large language model (LLM). 
-            Given an image alongside coordinates of specific points or regions and input 
-            instruction language, we perform tokenization and encoding to derive three distinct embeddings: 
-            image embeddings <span class="tex">\( Z_i \)</span>, visual prompt embeddings <span class="tex">\( Z_v \)</span>, 
-            and text embeddings <span class="tex">\( Z_t \)</span>.
-            Subsequently, we employ two projection matrixs to convert <span class="tex">\( Z_i \)</span> and 
-            <span class="tex">\( Z_v \)</span> into 
-            language embedding tokens, aligning them with the word embedding space in the language model. 
-            Finally, we integrate the image, visual prompt, and language representations, 
-            forwarding them collectively to the LLM to attain pixel/region-level understanding capability.
-          </p>
-          <p><span class="sphinx-v">SPHINX-V</span> is trained in two stages:</p>
+            As shown in Figure(b) above, we introduce a simple yet effective visual prompt encoder that focuses on two types of visual prompts: 
+            points and bounding boxes. Initially, the encoder utilizes positional encoding for the coordinates of both 
+            points (center) and boxes (top-left and bottom-right corners). It then adds three distinct learnable embeddings for 
+            each corner and processes them through a linear layer to obtain unified output embeddings. Additionally, we accommodate 
+            a dynamic number of visual prompts as input. We first set a fixed number of visual prompt tokens (16). Based on the 
+            validity of the actual input tokens, we provide both valid and invalid tokens with a set of learnable vectors to
+            help the model discern their effective features. Finally, we employ a linear layer to map the embeddings of
+            different prompt types to the same dimension, thereby unifying the various visual prompt inputs.
+            </p>
+          <p><span class="sphinx-v">VP-MLLM</span> is trained in two stages:</p>
 
               <ul>
                 <li><strong>Stage 1: Image-Visual Prompt-Text Alignment Pre-training.</strong>
-                  <p>By employing a visual prompt encoder, we initially freeze both the pre-trained vision encoder and the pre-trained LLM. We focus on training the features of visual prompts to align with the features of image-visual prompt-text. We implement an MLP as the connector between visual prompts and language to enhance the multimodal prompting capabilities of the model.</p>
+                  <p>
+                    We initially freeze both the pre-trained vision encoder and the LLM, then focus on training the 
+                    features of visual prompts to align with those of the input image and text. Following the approach in LLaVA, 
+                    we implement an MLP to transform the visual prompt tokens into the latent space of the LLM. 
+                    We use open-source detection and segmentation datasets to create our stage 1 training data. 
+                    These datasets include a wide range of objects and label types, such as elements of the 
+                    <i>natural world (e.g., people, animals, objects)</i>, 
+                    <i>remote sensing (e.g., buildings, roads, vehicles, water bodies)</i>, 
+                    <i>document components (e.g., titles, paragraphs, images, tables)</i>,
+                    <i>OCR data (e.g., text recognition), and screenshots (e.g., icons, text, search bars)</i>. 
+                    For point visual prompts, we randomly sample pixels from semantic segmentation images, where each point 
+                    corresponds to a pixellevel label annotation. For box visual prompts, we directly use the ground truth bounding boxes from
+                    detection datasets as inputs, enabling the model to recognize their corresponding labels. With this rich and
+                    diverse data for pre-training, the model is well-equipped for visual prompting and object categorization. 
+                  </p>
                 </li>
                 
                 <li><strong>Stage 2: Multi-Task Supervised Finetuning.</strong>
-                  <p>At this stage, we load the weights trained during stage 1 and keep the vision encoder and visual prompt encoder weights frozen. We then fine-tune the visual prompt projector and the LLM model. Our focus is on enhancing <span class="sphinx-v">SPHINX-V</span>'s ability to accurately interpret user instructions and handle diverse pixel-level understanding tasks, such as detailed captioning, inter-relationship analysis, and complex reasoning.</p>
+                  <p>
+                    At this stage, we load the weights trained from stage 1 and keep the vision encoder and visual 
+                    prompt encoder weights frozen. We then fine-tune the visual prompt projector and the LLM. 
+                    This stage focus on enhancing model’s ability to accurately interpret user instructions and 
+                    handle diverse visual prompting understanding tasks, such as detailed captioning, inter-relationship
+                    analysis, and complex reasoning, while maintain the original robust vision-language global understanding capability. 
+                  </p>
                 </li>
               </ul>
 
@@ -320,7 +340,7 @@
             <p></p>
             <p>
               Above diagram displays the distribution of images drawn from various sources, including nature scenes, 
-              OCR texts, web content, mobile interfaces, documents, and multi-pane graphics. 
+              OCR texts, remote sensing scenes, web content, mobile interfaces, documents, and multi-panel graphics. 
               It also features a sample from the GPT-assisted MDVP dataset, emphasizing the diversity 
               and richness of its point-based and region-based instruction-following data.
             </p>
@@ -412,35 +432,37 @@
           Traditional Evaluating Task
         </h3>
         <p style="text-align: left; margin-bottom: 20px;">
-          In traditional evaluation tasks, <span class="sphinx-v">SPHINX-V</span> significantly 
+          For evaluation, we primarily use two popular MLLMs: SPHINX-X and LLaVA-Next, along with three model sizes: 7B, 8B, and 13B.
+          In both visual prompt-based and traditional tasks, <span class="sphinx-v">VP-MLLM</span> significantly 
           outperforms existing visual-prompt-based methods.
         </p>
         <div class="content has-text-justified">
-          <div class="image-row" style="margin-bottom: 20px;">
-            <div class="image-column">
-              <img src="static/images/ROC.png" alt="ROC" style="width: 95%;">
-              <p>Semantic Similarity and Semantic IoU of ROC(referring object classification) on LVIS and PACO.</p>
-            </div>
-            <div class="image-column">
-              <img src="static/images/OCR.png" alt="OCR" style="width: 95%;">
-              <p>Accuracy of ROC on LVIS and OCR(optical character recognition) on COCO text.</p>
-            </div>
-          </div>
-          <div class="image-row" style="margin-bottom: 20px;">
-            <div class="image-column">
-              <img src="static/images/detail-caption.png" alt="detail caption" style="width: 90%;">
-              <p>Detailed region-level captioning performance on the RefCOCOg validation set. Using GPT-4V for evaluation.</p>
-            </div>
-            <div class="image-column">
-              <img src="static/images/brief-caption.png" alt="brief caption" style="width: 90%;">
-              <p>Brief region captioning performance evaluated on
-                RefCOCOg. Using traditional evaluation metric.</p>
-            </div>
+          <div style="text-align: center; margin-bottom: 20px;">
+            <img src="static/images/exp-table1.png" alt="arch" style="height: auto; width: 90%; display: inline-block;">
+            <p>
+              Results of referring classification on LVIS and PACO, and COCO text. Calculation of Semantic
+              Similarity and Semantic IOU was performed using box visual prompts.
+            </p>
           </div>
           <div style="text-align: center; margin-bottom: 20px;">
-            <img src="static/images/VCR.png" alt="arch" style="height: auto; width: 60%; display: inline-block;">
-            <p>Validation Accuracy on VCR dataset. 
-              Q, A, R stands for Question, Answer, Rational, respectively.</p>
+            <img src="static/images/exp-table2.png" alt="arch" style="height: auto; width: 100%; display: inline-block;">
+            <p>
+              Region-level captioning performance on the validation set of RefCOCOg and performance comparison on 
+              general MLLM benchmarks including VQA and OCR.
+            </p>
+          </div>
+          <div style="text-align: center; margin-bottom: 20px;">
+            <img src="static/images/exp-table2.png" alt="arch" style="height: auto; width: 100%; display: inline-block;">
+            <p>
+              Region-level captioning performance on the validation set of RefCOCOg and performance comparison on 
+              general MLLM benchmarks including VQA and OCR.
+            </p>
+          </div>
+          <div style="text-align: center; margin-bottom: 20px;">
+            <img src="static/images/exp-table3.png" alt="arch" style="height: auto; width: 95%; display: inline-block;">
+            <p>
+              Performance on the LLaVA Bench, Ferret Bench, and our MDVP Bench.
+            </p>
           </div>
         </div>
 
@@ -463,9 +485,6 @@
           different regions, and complex reasoning. The performance of existing visual-prompt-based 
           methods on MDVP-Bench is as follows:
         </p>
-        <div style="text-align: center; margin-bottom: 20px;">
-          <img src="static/images/mdvp-bench-table.png" alt="arch" style="height: auto; width: 80%; display: inline-block;">
-        </div>
 
         
       </div>
